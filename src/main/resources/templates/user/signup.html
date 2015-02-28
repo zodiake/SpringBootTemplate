@@ -6,10 +6,16 @@
 </head>
 <body>
 	<form th:action="@{/signup/new}" th:object="${user}" method="post" action="#">
+		<label for="name">name:</label>
 		<input type="text" th:field="*{name}" />
+		<label for="password">password:</label>
 		<input type="text" th:field="*{password}" />
+		<label for="confirmPassword">confirmPassword:</label>
 		<input type="text" th:field="*{confirmPassword}" />
+		<label for="captcha">captcha:</label>
+		<input type="text" th:field="*{captcha}" />
+		<img alt="captcha" src="/captcha-image.html"/>
+		<input type="submit"/>
 	</form>
-	<p>Hello Spring Boot!</p>
 </body>
 </html>

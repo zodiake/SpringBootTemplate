@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import application.domain.NcUser;
+import application.domain.SignupForm;
 import application.repository.NcUserRepository;
 import application.service.NcUserService;
 
@@ -28,6 +29,14 @@ public class NcUserServiceImpl implements NcUserService {
 	@Override
 	public NcUser findByName(String name) {
 		return userRepository.findByName(name);
+	}
+
+	@Override
+	public NcUser transformFromSignupForm(SignupForm form) {
+		NcUser u=new NcUser();
+		u.setName(form.getName());
+		u.setPassword(form.getPassword());
+		return createUser(u);
 	}
 
 }
