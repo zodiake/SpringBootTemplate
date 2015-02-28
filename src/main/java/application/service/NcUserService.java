@@ -1,6 +1,6 @@
-package Application.service;
+package application.service;
 
-import Application.domain.NcUser;
+import application.domain.NcUser;
 
 public interface NcUserService {
 	public NcUser createUser(NcUser user);

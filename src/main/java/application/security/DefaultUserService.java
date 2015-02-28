@@ -1,4 +1,4 @@
-package Application.security;
+package application.security;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import Application.domain.NcUser;
-import Application.service.NcUserService;
+import application.domain.NcUser;
+import application.service.NcUserService;
 
 @Service("authService")
 public class DefaultUserService implements UserDetailsService{

@@ -1,6 +1,6 @@
-package Application.service;
+package application.service;
 
-import Application.domain.Post;
+import application.domain.Post;
 
 public interface PostService {
 	public Post save(Post post);

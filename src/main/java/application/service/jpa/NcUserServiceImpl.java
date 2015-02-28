@@ -1,12 +1,12 @@
-package Application.service.jpa;
+package application.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import Application.domain.NcUser;
-import Application.repository.NcUserRepository;
-import Application.service.NcUserService;
+import application.domain.NcUser;
+import application.repository.NcUserRepository;
+import application.service.NcUserService;
 
 @Service
 @Transactional

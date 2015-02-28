@@ -1,11 +1,11 @@
-package Application.service.jpa;
+package application.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import Application.domain.Post;
-import Application.repository.PostRepository;
-import Application.service.PostService;
+import application.domain.Post;
+import application.repository.PostRepository;
+import application.service.PostService;
 
 @Service
 public class PostServiceImpl implements PostService {

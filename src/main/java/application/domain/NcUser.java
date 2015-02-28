@@ -1,4 +1,4 @@
-package Application.domain;
+package application.domain;
 
 import java.util.Calendar;
 import java.util.Set;

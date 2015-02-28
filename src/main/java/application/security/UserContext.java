@@ -1,8 +1,8 @@
-package Application.security;
+package application.security;
 
 import org.springframework.security.core.userdetails.User;
 
-import Application.domain.NcUser;
+import application.domain.NcUser;
 
 public interface UserContext {
 	User getCurrnetUser();
