@@ -1,0 +1,1 @@
+insert into ncuser (id,name,password) values (1,'tom','1');

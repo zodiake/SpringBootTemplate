@@ -37,9 +37,7 @@ public class Application {
 		@Override
 		public void configure(AuthenticationManagerBuilder auth)
 				throws Exception {
-			auth.inMemoryAuthentication().withUser("admin").password("admin")
-					.roles("ADMIN", "USER").and().withUser("user")
-					.password("user").roles("USER");
+			auth.userDetailsService(service);
 		}
 	}
 }
