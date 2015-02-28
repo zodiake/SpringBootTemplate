@@ -2,7 +2,7 @@ create table ncuser(
 	id int not null ,
 	name varchar(20) not null,
 	password varchar(30) not null,
-	createdTime timestamp,
+	created_time timestamp,
 	primary key(id),
 );
 
@@ -16,10 +16,10 @@ create table content(
 create table post(
 	id int not null ,
 	title varchar(30) not null,
-	praise int,
+	praise int default 0,
 	user_id int,
-	createdTime timestamp,
-	updatedTime timestamp,
+	created_time timestamp,
+	updated_time timestamp,
 	content_id int,
 	FOREIGN KEY (user_id) REFERENCES ncuser(id),
 	FOREIGN KEY (content_id) REFERENCES content(id),

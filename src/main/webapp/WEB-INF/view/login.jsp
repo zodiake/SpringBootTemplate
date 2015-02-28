@@ -7,11 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/login" method="post">
-		<input type="text" name="name" value="" placeholder="Username" />
-		<input type="password" name="password" placeholder="Password" /> 
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input type="submit">
-	</form>
 </body>
 </html>

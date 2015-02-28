@@ -1,13 +1,9 @@
 package Application.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import Application.domain.NcUser;
 
-import Application.repository.NcUserRepository;
-
-@Service
-public class NcUserService {
-	@Autowired
-	private NcUserRepository userRepository;
-
+public interface NcUserService {
+	public NcUser createUser(NcUser user);
+	public NcUser findById(int id);
+	public NcUser findByName(String name);
 }
