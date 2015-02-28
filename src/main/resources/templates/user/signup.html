@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Hello Spring Boot!</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" ></meta>
+</head>
+<body>
+	<form th:action="@{/signup/new}" th:object="${user}" method="post" action="#">
+		<input type="text" th:field="*{name}" />
+		<input type="text" th:field="*{password}" />
+		<input type="text" th:field="*{confirmPassword}" />
+	</form>
+	<p>Hello Spring Boot!</p>
+</body>
+</html>
