@@ -51,7 +51,7 @@ public class PostController {
 	// deal with update form
 	@RequestMapping(value = "/center/posts/{id}", params = "form", method = RequestMethod.PUT)
 	public String update(@PathVariable("id") Integer id,
-			@ModelAttribute("post") Post post, BindingResult result,
+			@ModelAttribute("post") Post post, BindingResult result,RedirectAttributes redirectAttributes,
 			Model uiModel) {
 		Post savedPost = postService.findById(id);
 		postRetrivePost(savedPost);
@@ -59,6 +59,8 @@ public class PostController {
 			uiModel.addAttribute("post", post);
 			return POSTEDIT;
 		}
+		postService.update(id, post);
+		redirectAttributes.addFlashAttribute("message", new Message("success","创建成功"));
 		return "redirect:/center/posts/" + id + "?form";
 	}
 

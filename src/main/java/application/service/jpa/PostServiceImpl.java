@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import application.domain.Content;
 import application.domain.Post;
 import application.repository.PostRepository;
 import application.service.PostService;
@@ -33,7 +34,8 @@ public class PostServiceImpl implements PostService {
 	public Post update(int id, Post newPost) {
 		Post old=postRepository.findOne(id);
 		old.setTitle(newPost.getTitle());
-		old.setContent(newPost.getContent());
+		Content content=old.getContent();
+		content.setContent(newPost.getContent().getContent());
 		return postRepository.save(old);
 	}
 }
