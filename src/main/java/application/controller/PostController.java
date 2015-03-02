@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import application.domain.Message;
@@ -51,8 +53,8 @@ public class PostController {
 	// deal with update form
 	@RequestMapping(value = "/center/posts/{id}", params = "form", method = RequestMethod.PUT)
 	public String update(@PathVariable("id") Integer id,
-			@ModelAttribute("post") Post post, BindingResult result,RedirectAttributes redirectAttributes,
-			Model uiModel) {
+			@ModelAttribute("post") Post post, BindingResult result,
+			RedirectAttributes redirectAttributes, Model uiModel) {
 		Post savedPost = postService.findById(id);
 		postRetrivePost(savedPost);
 		if (result.hasErrors()) {
@@ -60,7 +62,8 @@ public class PostController {
 			return POSTEDIT;
 		}
 		postService.update(id, post);
-		redirectAttributes.addFlashAttribute("message", new Message("success","创建成功"));
+		redirectAttributes.addFlashAttribute("message", new Message("success",
+				"创建成功"));
 		return "redirect:/center/posts/" + id + "?form";
 	}
 
@@ -75,16 +78,25 @@ public class PostController {
 	// deal with create new post
 	@RequestMapping(value = "/center/posts", params = "form", method = RequestMethod.POST)
 	public String createForm(@ModelAttribute("post") @Valid Post post,
-			BindingResult result, Model uiModel,RedirectAttributes redirectAttributes) {
+			BindingResult result, Model uiModel,
+			RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			uiModel.addAttribute("post", post);
-			redirectAttributes.addFlashAttribute("message", new Message("error","创建失败"));
+			redirectAttributes.addFlashAttribute("message", new Message(
+					"error", "创建失败"));
 			return POSTCREATE;
 		}
 		post.setCreatedBy(userContext.getCurrnetUser());
 		Post saved = postService.save(post);
-		redirectAttributes.addFlashAttribute("message", new Message("success","创建成功"));
+		redirectAttributes.addFlashAttribute("message", new Message("success",
+				"创建成功"));
 		return "redirect:/center/posts/" + saved.getId() + "?form";
+	}
+
+	@RequestMapping(value = "/posts/praise",  method = RequestMethod.POST)
+	@ResponseBody
+	public void updateRaise(@RequestParam("id") int id) {
+		postService.incrRaise(id);
 	}
 
 	private void postRetrivePost(Post post) {

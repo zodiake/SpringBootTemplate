@@ -11,16 +11,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="post")
+@Table(name = "post")
+@NamedQueries({ @NamedQuery(name = "post.updateRaise", query = "update Post p set p.praise=p.praise+1 where p.id=?1") })
 public class Post {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	private String title;
@@ -36,11 +39,11 @@ public class Post {
 	private NcUser createdBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="createdTime")
+	@Column(name = "createdTime")
 	private Calendar createdTime;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="updatedTime")
+	@Column(name = "updatedTime")
 	private Calendar updatedTime;
 
 	public int getId() {
