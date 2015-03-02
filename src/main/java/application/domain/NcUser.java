@@ -3,6 +3,7 @@ package application.domain;
 import java.util.Calendar;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class NcUser {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar createdTime;
 
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user",cascade=CascadeType.PERSIST)
 	private Authority authority;
 
 	public int getId() {

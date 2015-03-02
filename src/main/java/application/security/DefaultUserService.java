@@ -30,6 +30,7 @@ public class DefaultUserService implements UserDetailsService {
 		public NcUserDetails(NcUser user) {
 			setId(user.getId());
 			setPassword(user.getPassword());
+			setAuthority(user.getAuthority());
 		}
 
 		@Override

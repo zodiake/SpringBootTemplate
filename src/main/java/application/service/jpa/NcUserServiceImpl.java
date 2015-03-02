@@ -5,6 +5,8 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import application.domain.Authority;
+import application.domain.ChangePasswordForm;
 import application.domain.NcUser;
 import application.domain.SignupForm;
 import application.repository.NcUserRepository;
@@ -20,7 +22,7 @@ public class NcUserServiceImpl implements NcUserService {
 
 	@Override
 	public NcUser createUser(NcUser user) {
-		NcUser result=userRepository.save(user);
+		NcUser result = userRepository.save(user);
 		return result;
 	}
 
@@ -36,10 +38,21 @@ public class NcUserServiceImpl implements NcUserService {
 
 	@Override
 	public NcUser transformFromSignupForm(SignupForm form) {
-		NcUser u=new NcUser();
+		NcUser u = new NcUser();
 		u.setName(form.getName());
-		u.setPassword(passwordEncoder.encodePassword(form.getPassword(),null));
+		u.setPassword(encodePassword(form.getPassword()));
+		u.setAuthority(new Authority("ROLE_USER"));
 		return createUser(u);
 	}
 
+	@Override
+	public void changePassword(NcUser user, ChangePasswordForm form) {
+		NcUser result = userRepository.findOne(user.getId());
+		result.setPassword(encodePassword(user.getPassword()));
+		userRepository.save(result);
+	}
+
+	private String encodePassword(String source) {
+		return passwordEncoder.encodePassword(source, null);
+	}
 }

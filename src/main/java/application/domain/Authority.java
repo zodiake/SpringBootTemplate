@@ -19,6 +19,12 @@ public class Authority {
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private NcUser user;
+	
+	public Authority(){}
+	
+	public Authority(String name){
+		this.name=name;
+	}
 
 	public int getId() {
 		return id;

@@ -1,6 +1,8 @@
 package application;
 
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -9,12 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
+import application.converter.StringToContent;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
@@ -63,5 +69,18 @@ public class Application {
 		kaptcha.setConfig(config);
 		return kaptcha;
 	}
-
+	
+	@Bean
+	public ConversionServiceFactoryBean conversionService(){
+		ConversionServiceFactoryBean factoryBean=new ConversionServiceFactoryBean();
+		Set<Converter> converters=new HashSet<Converter>();
+		converters.add(stringToContent());
+		factoryBean.setConverters(converters);
+		return factoryBean;
+	}
+	
+	@Bean
+	public StringToContent stringToContent(){
+		return new StringToContent();
+	}
 }
