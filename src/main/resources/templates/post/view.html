@@ -4,12 +4,14 @@
 <meta charset="UTF-8"></meta>
 <meta name="_csrf" th:content="${_csrf.token}" />
 <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<meta name="id" th:content="${post.id}" />
 <title>Insert title here</title>
 <script type="text/javascript" th:src="@{/js/jquery-1.11.2.min.js}"></script>
 <script>
 	$(function() {
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
+		var id=$("meta[name='id']").attr("content");
 
 		$(document).ajaxSend(function(e, xhr, options) {
 			xhr.setRequestHeader(header, token);
@@ -20,7 +22,7 @@
 				method : 'post',
 				url : '/posts/praise',
 				data : {
-					id : 1
+					id : id
 				}
 			});
 		});
