@@ -1,7 +1,7 @@
 create table ncuser(
 	id int not null AUTO_INCREMENT,
 	name varchar(20) not null,
-	password varchar(30) not null,
+	password varchar(64) not null,
 	created_time timestamp,
 	primary key(id),
 );

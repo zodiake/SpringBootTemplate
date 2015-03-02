@@ -17,10 +17,10 @@ public class SpringUserContext implements UserContext {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	public User getCurrnetUser() {
+	public NcUser getCurrnetUser() {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
-		return (User) authentication.getPrincipal();
+		return (NcUser) authentication.getPrincipal();
 	}
 
 	public void setCurrentUser(NcUser user) {

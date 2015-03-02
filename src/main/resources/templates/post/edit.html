@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:object="${post}">
+		<header>
+			<p>title: <span th:text="*{title}">Sebastian</span></p>
+			<p>content: <span th:text="*{content.content}">Sebastian</span></p>
+		</header>
+	</div>
+</body>
+</html>

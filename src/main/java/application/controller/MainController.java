@@ -23,8 +23,7 @@ public class MainController {
 	
 	@RequestMapping(value="/home")
 	public String home(){
-		String name=securityContext.getCurrnetUser().getUsername();
-		System.out.println(name);
+		String name=securityContext.getCurrnetUser().getName();
 		return null;
 	}
 

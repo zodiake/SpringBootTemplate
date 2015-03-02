@@ -1,6 +1,7 @@
 package application.service.jpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,8 @@ import application.service.NcUserService;
 public class NcUserServiceImpl implements NcUserService {
 	@Autowired
 	private NcUserRepository userRepository;
+	@Autowired
+	private ShaPasswordEncoder passwordEncoder;
 
 	@Override
 	public NcUser createUser(NcUser user) {
@@ -35,7 +38,7 @@ public class NcUserServiceImpl implements NcUserService {
 	public NcUser transformFromSignupForm(SignupForm form) {
 		NcUser u=new NcUser();
 		u.setName(form.getName());
-		u.setPassword(form.getPassword());
+		u.setPassword(passwordEncoder.encodePassword(form.getPassword(),null));
 		return createUser(u);
 	}
 
