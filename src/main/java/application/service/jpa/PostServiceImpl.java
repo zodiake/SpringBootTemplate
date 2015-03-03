@@ -1,17 +1,23 @@
 package application.service.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import application.domain.Content;
+import application.domain.NcUser;
 import application.domain.Post;
 import application.repository.PostRepository;
 import application.service.PostService;
+
+import com.google.common.collect.Lists;
 
 @Service
 @Transactional
@@ -51,5 +57,20 @@ public class PostServiceImpl implements PostService {
 		Query query = em.createNamedQuery("post.updateRaise");
 		query.setParameter(1, id);
 		query.executeUpdate();
+	}
+
+	@Override
+	public List<Post> findAll(Pageable pageable) {
+		return Lists.newLinkedList(postRepository.findAll(pageable));
+	}
+
+	@Override
+	public long countAllByCreatedBy(NcUser user) {
+		return postRepository.countByCreatedBy(user);
+	}
+
+	@Override
+	public long countAll() {
+		return postRepository.count();
 	}
 }
