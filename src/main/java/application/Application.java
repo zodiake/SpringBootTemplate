@@ -19,6 +19,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect;
 
 import application.converter.StringToContent;
 
@@ -82,5 +83,10 @@ public class Application {
 	@Bean
 	public StringToContent stringToContent(){
 		return new StringToContent();
+	}
+
+	@Bean
+	public SpringSecurityDialect springSecurityDialect(){
+		return new SpringSecurityDialect();
 	}
 }
