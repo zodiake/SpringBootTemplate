@@ -7,7 +7,9 @@
 </head>
 <body>
 	<div th:include="fragments/page :: page(2,9)"></div>
-	<div sec:authorize="hasRole('ROLE_USER')">This content is only
-		shown to administrators.</div>
+	<div sec:authorize="hasRole('ROLE_USER')">
+		This content is only
+		shown to administrators.
+	</div>
 </body>
 </html>

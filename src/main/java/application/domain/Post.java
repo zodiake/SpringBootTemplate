@@ -35,6 +35,10 @@ public class Post {
 	private int praise;
 
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "group_id")
+	private FansGroup group;
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private NcUser createdBy;
 
@@ -101,4 +105,13 @@ public class Post {
 	public void setUpdatedTime(Calendar updatedTime) {
 		this.updatedTime = updatedTime;
 	}
+
+	public FansGroup getGroup() {
+		return group;
+	}
+
+	public void setGroup(FansGroup group) {
+		this.group = group;
+	}
+
 }
